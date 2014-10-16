@@ -77,11 +77,23 @@ bool Maze::traverse(int row, int col)
 
          if (!done)
          {
-            if (traverse(row, col + 1))
+            if (maze -> getElement(row, col + 1) == SPACE)  //down
+            {
+               traverse(row, col + 1);
+            }
+            else if (maze -> getElement(row + 1, col) == SPACE) //right 
+            {
+               traverse(row + 1, col);
+            }
+            else if (maze -> getElement(row, col - 1) == SPACE)  //up
+            {
+               traverse(row, col - 1);
+            }  
+            else   //left
+            {
+               traverse(row - 1, col);
+            }
          }
-
-
-
       }
 
       //if we are done, on the way back recursively we must mark the path that we took as the solution path
