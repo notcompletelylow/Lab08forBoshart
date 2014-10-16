@@ -1,3 +1,4 @@
+//RESPOSITORY LINK: https://github.com/notcompletelylow/Lab08forBoshart
 #include "Maze.h"
 #include "Color.h"
 #include "Rect.h"
@@ -36,16 +37,17 @@ bool Maze::solve()
 bool Maze::traverse(int row, int col)
 {
    bool done = false; //assume we are not done unless proven otherwise
+   double element = maze -> getElement(row, col); 
 
    //DO THIS
    //test that the current grid location is a space (i.e. not a wall or already tried)
-   if (                                   )
+   if (element == SPACE)
    {
 
       //DO THIS
       //now it has been tried so mark it as tried
 
-
+      maze -> setElement(row, col, TRIED);
 
 
       Sleep(75);  //slow down the maze traversal
@@ -56,7 +58,7 @@ bool Maze::traverse(int row, int col)
       int height = maze->getNumRows();
       int width = maze->getNumCols();
 
-      if (                     )
+      if (element == SPACE && row == height && col == width)
       {
          done = true;
       }
@@ -71,18 +73,12 @@ bool Maze::traverse(int row, int col)
          //don't use row++ or column++ use row + 1 or col + 1, etc.
          //IMPORTANT: make use of the boolean that is returned every time you call traverse
 
+         done = traverse(row, col);
 
-
-
-
-
-
-
-
-
-
-
-
+         if (!done)
+         {
+            if (traverse(row, col + 1))
+         }
 
 
 
@@ -169,3 +165,23 @@ void Maze::draw(Cairo::RefPtr<Cairo::Context> cr, int width, int height)
       }
    }
 }
+
+
+/*
+         if (maze -> getElement(row, col + 1) == SPACE)  //down
+         {
+
+         }
+         else if (maze -> getElement(row + 1, col) == SPACE) //right 
+         {
+
+         }
+         else if (maze -> getElement(row, col - 1) == SPACE)  //up
+         {
+
+         }  
+         else   //left
+         {
+
+         }
+*/
